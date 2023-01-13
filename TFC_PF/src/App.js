@@ -19,7 +19,7 @@ import MakeClass from './components/MakeClass';
 
 function App() {
   const base_url = 'http://127.0.0.1:8000/'
-  const google_api_key = 'AIzaSyCNsOWm6DZW20R18oQk5VID-EM4ElMvv_c';
+  const google_api_key = '';
   const [is_authenticated, setAuthenticated] = useState(false);
   const [is_admin, setIsAdmin] = useState(false);
 
