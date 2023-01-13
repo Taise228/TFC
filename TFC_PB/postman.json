@@ -1,0 +1,1469 @@
+{
+	"info": {
+		"_postman_id": "aee8b7c5-9541-460a-b13b-9b6da3b79f06",
+		"name": "CSC309 PB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24420270"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "Taisei",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Yamamoto",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "CSC309fall",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/accounts/signup/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"signup",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code == 200){",
+									"    pm.environment.set(\"access_token\", pm.response.json().access)",
+									"    pm.environment.set(\"refresh_token\", pm.response.json().refresh)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "yamamototaisei534@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Taisei0824",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/accounts/api/token/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/accounts/profile/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit prifile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone_number",
+									"value": "22222222222",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/accounts/profile/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/accounts/profile/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "studio",
+			"item": [
+				{
+					"name": "get studio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/studios/studio?latitude=0&longitude=0&page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"studio"
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "0"
+								},
+								{
+									"key": "longitude",
+									"value": "0"
+								},
+								{
+									"key": "name",
+									"value": "a",
+									"disabled": true
+								},
+								{
+									"key": "amenity",
+									"value": "towel",
+									"disabled": true
+								},
+								{
+									"key": "class",
+									"value": "run",
+									"disabled": true
+								},
+								{
+									"key": "coach",
+									"value": "yama",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add studio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "A",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "xxx-xxx",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "x0xx0x",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "xxxxxxxxxx",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/studios/studio/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"studio",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit studio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "yyyyyyyyyy",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/studios/studio/3/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"studio",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete studio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/studios/studio/3/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"studio",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get studio images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/studios/studioimage/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"studioimage",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload studio image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "studio",
+									"value": "a",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/studios/studioimage/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"studioimage",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete studio image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/studios/studioimage/2/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"studioimage",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get amenities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/studios/amenity/?studio=a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"amenity",
+								""
+							],
+							"query": [
+								{
+									"key": "studio",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload amenity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "studio",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "towel",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/studios/amenity/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"amenity",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit amenity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "studio",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/studios/amenity/1/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"amenity",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete amenity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/studios/amenity/1/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"studios",
+								"amenity",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class",
+			"item": [
+				{
+					"name": "get class instance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/classes/list/?page=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"list",
+								""
+							],
+							"query": [
+								{
+									"key": "studio",
+									"value": "b",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "dance",
+									"disabled": true
+								},
+								{
+									"key": "coach",
+									"value": "coach A",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "2024-01-01 00:00:00",
+									"disabled": true
+								},
+								{
+									"key": "endTime",
+									"value": "2025-01-01 11:00:00",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add classes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "studio",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "walk",
+									"type": "text"
+								},
+								{
+									"key": "startDate",
+									"value": "2030-10-11",
+									"type": "text"
+								},
+								{
+									"key": "startTime",
+									"value": "11:00:00",
+									"type": "text"
+								},
+								{
+									"key": "endTime",
+									"value": "15:00:00",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dance!",
+									"type": "text"
+								},
+								{
+									"key": "coach",
+									"value": "Coach A",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "keywords",
+									"value": "young, old",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2031-10-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/classes/edit/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"edit",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create one class",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "studio",
+									"value": "b",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "dance",
+									"type": "text"
+								},
+								{
+									"key": "startTime",
+									"value": "2023-01-01 00:00:00",
+									"type": "text"
+								},
+								{
+									"key": "endTime",
+									"value": "2023-01-01 10:00:00",
+									"type": "text"
+								},
+								{
+									"key": "coach",
+									"value": "coach A",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/classes/create/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete specific class",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "studio",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "walk",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "2030-10-18 11:00:00",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/classes/list/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete collective classes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/classes/delete/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enroll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "to_class",
+									"value": "42",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "class_name",
+									"value": "run",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/classes/enroll/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"enroll",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check enroll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/classes/enroll/check/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"enroll",
+								"check",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete enroll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "to_class",
+									"value": "31",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/classes/enroll/delete/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"enroll",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit each class",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "106",
+									"type": "text"
+								},
+								{
+									"key": "studio",
+									"value": "b",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "2025-01-01 09:00:00",
+									"type": "text"
+								},
+								{
+									"key": "endTime",
+									"value": "2025-01-01 12:00:00",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/classes/list/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classes",
+								"list",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subscription",
+			"item": [
+				{
+					"name": "create subscription plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "price",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "6 months",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/subscription/subscription/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscription",
+								"subscription",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get subscription plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/subscription/subscription/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscription",
+								"subscription",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user register with subscription plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "plan",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "card",
+									"value": "0000000000000000",
+									"type": "text"
+								},
+								{
+									"key": "expiry_date",
+									"value": "01/20",
+									"type": "text"
+								},
+								{
+									"key": "csv",
+									"value": "000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/subscription/create/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscription",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see my subscription plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/subscription/plan/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscription",
+								"plan",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/subscription/plan/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscription",
+								"plan",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit my subscription plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "plan",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "card",
+									"value": "111111111111",
+									"type": "text"
+								},
+								{
+									"key": "expiry_date",
+									"value": "05/29",
+									"type": "text"
+								},
+								{
+									"key": "csv",
+									"value": "000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/subscription/plan/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscription",
+								"plan",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see my payment history and one future payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/subscription/payment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscription",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

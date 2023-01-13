@@ -1,0 +1,71 @@
+div.box {
+    width: 10rem;
+    height: 10rem;
+    background-color: gray;
+    display: grid;
+    place-items: center;
+}
+
+p.message {
+    color: red;
+}
+
+p.None {
+    color: white;
+    font-size: 200%;
+}
+
+div.list button {
+    font-weight: bold;
+    font-size: large;
+    height: 7rem;
+    width: auto;
+    border-radius: 50%;
+    line-height: 100px;
+    box-shadow: 0 5px 0 #e6d900;
+    background-color: #fbf7b5;
+}
+
+div.list button:hover {
+    -webkit-transform: translate(0, 3px);
+    transform: translate(0, 3px);
+    -webkit-box-shadow: 0 2px 0 #e6d900;
+    box-shadow: 0 2px 0 #e6d900;
+}
+
+div#user_page {
+    background: url('https://img.freepik.com/free-photo/abstract-blur-gym-room_74190-3584.jpg?w=2000');
+    width: auto;
+    height: 100%;
+    text-align: center;
+}
+
+div.edit_out {
+    background-color: white;
+    width: 70%;
+    text-align: center;
+}
+
+div.edit_out div.edit_in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+    margin: 1rem;
+}
+
+div.edit_out form div.edit_in label {
+    padding-top: 0.5rem;
+    padding-bottom: 0rem;
+    margin-bottom: 0rem;
+}
+
+div.edit_out form button#edit_profile, div.edit_out form button#edit_password {
+    height: 2rem;
+    width: 10rem;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}

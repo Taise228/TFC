@@ -1,0 +1,132 @@
+EndPoint:
+Methods:
+Field/Payload:
+Description:
+
+EndPoint: /accounts/api/token/
+Methods: POST
+Field/Payload: email, password
+Description: generate jwt token if the user is valid
+
+EndPoint: /accounts/signup/
+Methods: POST
+Field/Payload: email, first_name, last_name, phone_number, avatar, password
+Description: register user
+
+EndPoint: /accounts/profile/
+Methods:GET, PUT, PATCH, DELETE
+Field/Payload: email, first_name, last_name, phone_number, avatar, password
+Description: If a method is GET, retrieve that authenticated user's info. 
+             If PUT, update all the fields. 
+             If PATCH, update fields included in the payload.
+             If DELETE, delete that user's tuple.
+
+EndPoint: /studios/studio/
+Methods: GET, POST
+Field/Payload: name, address, latitude, longitude, postal_code, phone_number
+Patameters: (GET) latitude, longitude, name, amenity, class, page
+Description: if GET, retrieve all studios in the order of distance from (latitude, longitude). When these two parameters are not included, the order is from top of the table to bottom.
+              and if there are parameter named "name", "amenity", "class", find studios that match these conditions. "amenity" refers to "type" field of Amenity model.
+             The response will be paginated.
+             if POST, generate and save a new studio.
+
+EndPoint: /studios/studio/(id)/
+Methods: GET, PATCH, PUT, DELETE
+Field/Payload: name, address, latitude, longitude, postal_code, phone_number
+Description: manipulate the studio of that id.
+
+EndPoint: /studios/studioimage/
+Methods: GET, POST
+Field/Payload: image, studio
+parameters: studio
+Description: add an image to the studio or fetch it. If studio name is sent via parameter, filter tuples.
+
+EndPoint: /studios/studioimage/(id)/
+Methods: GET, PUT, PATCH, DELETE
+Field/Payload: image, studio
+Description: modify image. id is that of image.
+
+EndPoint: /studios/amenity/
+Methods: GET, POST
+Field/Payload: studio, type, quantity
+parameters: studio
+Description: fetch amenity info. if GET and studio is included in parameter, fetch amenities of only that studio.
+
+EndPoint: /studios/amenity/(id)/
+Methods: GET, PUT, PATCH, DELETE
+Field/Payload: studio, type, quantity
+Description: modify each amenity. id is that of amenity.
+
+EndPoint: /classes/edit/
+Methods: GET, POST
+Field/Payload: studio, name, description, coach, keywords, capacity, startDate, startTime, endTime, endDate
+params: name
+Description: if POST, also some classes are added to class lists. If you specify the endDate, classes from startDate to endDate every week are added. If you don't, 10 classes are added every week in ClassList.
+             Those classes take place every week on the same day from that startTime to endTime.
+             (e.g. if startDate is 8/1, in the class lists, those classes are added until the number of classes becomes 10: 8/1, 8/8, 8/15, ...)
+             So endDate will be 10 weeks later than startDate.
+
+EndPoint: /classes/list/
+Methods: GET, DELETE, PATCH
+Field/Payload: id(PATCH), studio, name(DELETE), startTime, endTime(PATCH)
+parameters: id, studio, name, coach, startTime, endTime, page
+Description: if GET, present classes which will be held in that conditions (from parameters). Present classes which start after startTime, and end before endTime. The response will be paginated.
+             if DELETE, cancel classes which applies to conditions specified in payload. if multiple tuples satisfies the condition, all of them will be deleted. only turn cancel field to False, not delete any queries
+             if PATCH, modify class information specified in payload
+
+EndPoint: /classes/create/
+Methods: POST
+Field/Payload: studio, name, startTime, endTime, coach
+Description: create one class
+
+EndPoint: /classes/delete/
+Methods: DELETE
+Field/Payload: studio, name, startDate, startTime
+Description: delete the class which applies to the condition specified in payload. if multiple tuples satisfies the condition, all of them will be deleted. remove queries from table.
+
+EndPoint: /subscription/subscription/
+Methods: GET, POST
+Field/Payload: price, duration
+Description: GET gets all plans.
+             POST: duration must be in designated kinds. (e.g month, year)
+
+EndPoint: /subscription/subscription/(id)/
+Methods: GET, PUT, PATCH, DELETE
+Field/Payload: price, duration
+Description: modify each tuples with that id
+             duration should be in ["month", "year", etc]
+
+EndPoint: /subscription/plan/
+Methods: GET, DELETE, PATCH
+Field/Payload: plan, card, expiry_date, csv
+Description: get or delete plan of that authenticated user and change plan by PATCH. this change includes only card information.
+             a change here influences on Paymen table as well. if DELETE, only future payment will be deleted. if PATCH, information of only future payment will be modified.
+             if you want to change plan itself, you have to delete once and register again.
+
+EndPoint: /subscription/create/
+Methods: POST
+Field/Payload: plan, card, expiry_date, csv
+Description: create plan for that user.
+             user must not have another plan and plan field must be included and it must be in Subscription model.
+
+EndPoint: /subscription/payment/
+Methods: GET
+Field/Payload: 
+Description: get payment history and one future payment. 
+             If there's no future payment in the table but the user is supposed to pay, it'll be added at this time.
+
+EndPoint: /classes/enroll/
+Methods: POST
+Field/Payload: to_class or class_name
+Description: enroll user to the class. to_class is a id from ClassList. check whether user is eligible.
+
+EndPoint: /classes/enroll/delete/
+Methods: DELETE
+Field/Payload: to_class or class_name
+Description: if user sends to_class, delete only one enrollment.
+             if user sends class_name, delete multiple enrollments.
+
+EndPoint: /classes/enroll/check/
+Methods: GET
+Field/Payload:
+Description: fetch all classes enrolled or history

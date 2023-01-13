@@ -1,0 +1,76 @@
+/*セレクターの様式
+tag
+.class
+#id
+tag.class ...そのタグかつクラス名の要素を指定
+a, b ...aとb両方を指定
+a b ...親要素aの中にある子孫要素bにのみ適用。親子関係の階層はどれほど深くなっても良い。
+a > b ...aの直接の子要素bにのみ適用
+a + b ...aに隣接した要素のみに適用
+a ~ b ...aと同じ階層にある要素bを全て指定
+*/
+
+nav {
+    background-color: rgb(254, 254, 1);
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10000;
+    height: 8rem;
+}
+
+div#nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav ul li {
+    display: inline-block;
+    font-size: 20px;
+    margin-right: 4rem;
+}
+
+nav ul li a {
+    /*background: linear-gradient(to right,#f59090,#fcd7a1,#fff9b1,#a5d4ad,#a3bce2,#a59aca,#cfa7cd);*/
+    background-color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 0.3rem;
+    font-weight: bolder;
+}
+nav ul li a:hover {
+    background: #13c3ac;
+}
+
+img.logo {
+    width: auto;
+    height: 5rem;
+}
+
+div.contents {
+    padding-top: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav.admin {
+    background-color: plum;
+}
+
+nav.admin div#nav ul {
+    margin-top: 0rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 2rem 0rem 2rem;
+    background-color: rgb(222, 235, 171);
+    font-family: 'Hiragino Kaku Gothic Pro';
+}
+
+body {
+    background-color: rgb(158, 183, 207);
+}

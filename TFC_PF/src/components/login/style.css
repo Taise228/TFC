@@ -1,0 +1,35 @@
+.notification {
+    color: red;
+}
+form#login {
+    text-align: center;
+}
+
+form#login div.textinput {
+    text-align: center;
+    padding-right: 1rem;
+}
+
+form#login input {
+    margin-bottom: 0.5rem;
+}
+
+div.container div#login {
+    background-color: white;
+    width: 50%;
+    height: auto;
+    text-align: center;
+}
+div.container div#login hr {
+    height: 1px;
+    background-color: red;
+}
+
+div.container div#login form#login button#login {
+    height: 2rem;
+    width: 10rem;
+    font-size: large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: black;
+    color: white;
+}

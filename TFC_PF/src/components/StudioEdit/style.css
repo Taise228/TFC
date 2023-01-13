@@ -1,0 +1,10 @@
+div.studio {
+    background-color: white;
+    height: 22rem;
+    width: 22rem;
+    margin: 1rem auto;
+}
+
+p.notification {
+    color: red;
+}

@@ -1,0 +1,9 @@
+table.payment {
+    border-collapse: collapse;
+    margin: 1rem;
+    background-color: white;
+}
+
+table.payment thead tr th, table.payment tbody tr td {
+    border: solid 1px black;
+}

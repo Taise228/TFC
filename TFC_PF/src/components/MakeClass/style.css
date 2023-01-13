@@ -1,0 +1,16 @@
+div.class_program {
+    background-color: bisque;
+    height: 15rem;
+    width: 30rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+div.button {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+p.notification {
+    color: red;
+}

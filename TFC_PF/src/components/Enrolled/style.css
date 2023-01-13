@@ -1,0 +1,15 @@
+p.notification {
+    color: red;
+}
+
+button.toggle {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+button#drop {
+    height: 1.5rem;
+    width: 8rem;
+    margin: 0.5rem;
+}

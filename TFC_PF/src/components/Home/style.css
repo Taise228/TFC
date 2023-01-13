@@ -1,0 +1,93 @@
+p.message {
+    color: red;
+    padding: 0rem;
+    font-size: 1.2rem;
+}
+
+img#exterior {
+    width: 100%;
+    height: auto;
+}
+
+div.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+div#title {
+    width: 50%;
+    height: auto;
+    padding: 0 0;
+    --duration: 2.4s;
+    --delay: 0.6s; 
+    --ease: ease-out;
+    display: block;
+    line-height: 1.4;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+@keyframes toLeft {
+    100% {
+      -webkit-transform: translate(0, 0);
+      background-position: right 30% center;
+    }
+}
+div#title h1{
+    font-family: 'Arial';
+    color: darkmagenta;
+    background-image: linear-gradient(to right, #fff 30%, rgba(255, 255, 255, 0) 60%);
+    background-position: right 0% center;
+    -webkit-transform: translate(150%, 0);
+    -moz-transform: translate(150%, 0);
+    -ms-transform: translate(150%, 0);
+    transform: translate(150%, 0);
+    -webkit-animation: toLeft var(--duration, 2.4s) var(--ease) var(--delay, 0.6s) forwards;
+    -moz-animation: toLeft var(--duration, 2.4s) var(--ease) var(--delay, 0.6s) forwards; 
+    -ms-animation: toLeft var(--duration, 2.4s) var(--ease) var(--delay, 0.6s) forwards; 
+    animation: toLeft var(--duration, 2.4s) var(--ease) var(--delay, 0.6s) forwards; 
+    margin-bottom: 0;
+    margin-top: 0;
+    border-radius: 5px;
+}
+
+hr {
+    height: 8px;
+    width: 100%;
+    background-color: white;
+}
+
+div.list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.link {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    text-align: center;
+    margin: 0.5rem;
+}
+
+div.link a {
+    padding: 1.5rem 10px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgb(49, 170, 226) 50%);
+    background-position: 0 0;
+    background-size: 200% auto;
+    transition: .3s;
+    font-weight: bold;
+}
+
+div.link a:hover {
+    background-position: -100% 0;
+    color: #fff;
+}
+
+div.link img {
+    padding: 1rem;
+    width: 13rem;
+    height: 13rem;
+}
