@@ -14,7 +14,8 @@ run in your command prompt<br>
 
 After them some processes will be running on background of your computer including both frontend and backend. <br>
  So if you want to stop them, you have to check process ids for this project using 
- ```ps
+ ```
+ ps
  ```
   command and 
  ```
